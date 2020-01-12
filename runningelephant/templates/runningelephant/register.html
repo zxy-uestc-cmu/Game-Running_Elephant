@@ -1,0 +1,31 @@
+{% extends "runningelephant/base.html" %}
+
+{% load widget_tweaks %}
+
+{% block title %}Sign up{% endblock %}
+
+{% block body %}
+	<h1 class="text-center margin header">Sign up</h1>
+
+	<div class="container form-container auth_container">
+		<form method="POST" novalidate class="form"> {% csrf_token %}
+			{% if form.non_field_errors %}
+				<div class="alert alert-danger" role="alert">
+					{% for error in form.non_field_errors %}
+						{{ error }}
+					{% endfor %}
+				</div>
+			{% endif %}
+		
+			{% for field in form %}    
+			<div class="center">
+				<span class="field">{{ field.label_tag }} &nbsp; {{ field }}</span><span class="content">{{ field.errors }}</span>
+			</div><br>
+			{% endfor %}<br>
+			<button type="submit" class="selection" style="font-size: 18px;" id="login-submit">Submit</button>
+		</form>
+		<br>
+		<a href="{% url 'hello' %}" class="go_back"><i class="fa fa-arrow-left" aria-hidden="true"></i> Go back</a>
+	</div>
+	<br><br><br>
+{% endblock %}

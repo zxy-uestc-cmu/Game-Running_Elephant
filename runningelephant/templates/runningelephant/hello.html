@@ -1,0 +1,19 @@
+{% extends "runningelephant/base.html" %}
+
+{% block body %}
+<div class="hello">
+    {% if request.user.is_authenticated %}
+    <h1 class="header">Welcome, {{request.user.username}}</h1>
+    <br><br><br>
+    <a href="{% url 'begin' %}"><button class="selection">Get Started</button></a>
+    {% else %}
+    <form class='form' action="{% url 'hello' %}" method='POST'>{% csrf_token %} 
+            <input class="hello_btn" type="submit" name='signup' value="Sign Up">
+        </form> 
+    <form class='form' action="{% url 'hello' %}" method='POST'>{% csrf_token %} 
+        <input class="hello_btn" type="submit" name='loggin' value="Log in">
+    </form> 
+{% endif %}
+</div>
+{% endblock %}
+

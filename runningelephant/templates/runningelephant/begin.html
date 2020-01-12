@@ -1,0 +1,19 @@
+{% extends "runningelephant/base.html" %}
+
+{% block body %}
+<div class="center"><form class='form' action="{% url 'begin' %}" method='POST'>{% csrf_token %} 
+        <input class="selection1"  type="submit" name='game' value="Begin Game !">
+    </form> </div>
+<div class="center"><form class='form' action="{% url 'begin' %}" method='POST'>{% csrf_token %} 
+    <input class="selection" type="submit" name='profile' value="Your Profile">
+</form></div>
+<div class="center"><form class='form' action="{% url 'begin' %}" method='POST'>{% csrf_token %} 
+    <input class="selection"  type="submit" name='score' value="Scoreboard">
+</form> </div>
+<div class="center"><form class='form' action="{% url 'begin' %}" method='POST'>{% csrf_token %} 
+    <input class="selection"  type="submit" name='logout' value="Log out" id="logout">
+</form> </div>
+
+
+{% endblock %}
+

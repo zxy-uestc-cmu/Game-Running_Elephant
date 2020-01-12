@@ -1,0 +1,75 @@
+{% extends "runningelephant/base.html" %}
+
+{% block js %}
+<script>
+    // var chatSocket = new WebSocket(
+    // 'wss://' + window.location.host +':8001'+ '/ws/profile/');
+    var chatSocket = new WebSocket('ws://' + '127.0.0.1:8000' + '/ws/profile/');
+    $('#broad').click(function(e){
+        var messageInputDom1 = document.querySelector('#name');
+        var messageInputDom2 = document.querySelector('#score');
+        var message = messageInputDom1.innerHTML + ' achieved ' +messageInputDom2.innerHTML +' just now !!!';
+        chatSocket.send(JSON.stringify({
+            'message': message
+        }));
+    });
+
+    chatSocket.onmessage = function(e) {
+      var data = JSON.parse(e.data);
+      var message = data['message'];
+      var broadcastdiv = '<div id="broadcast">' + message + '<br/></div>';
+      $("#tmp").empty();
+      $("#tmp").append(broadcastdiv);
+      $("#broadcast").css({
+        // "margin-left": $("#broadcast").width() / 2 * (-1) + 470 ,
+        // "margin-top": $("#broadcast").height() / 2 * (-1) - 140 ,
+        'position':'absolute', 
+        // 'display':'none', 
+        // 'overflow':'hidden', 
+        'padding':'30px 30px 30px',
+        // 'top': '50%',
+        'left': '450px', 
+        'text-align':'center', 
+        'font-family':"'Archivo Black', sans-serif",
+        'font-size': '20px',
+        'font-weight': 'bold',
+        'line-height':'30px',
+        'background-color':'#378530',
+        'border-radius': '10px',
+        'color': '#ffffff',
+        'border':'5px solid #000000ea',
+      });
+      $("#broadcast").show().delay(5000).fadeOut();
+    };
+
+  chatSocket.onclose = function(e) {
+    console.error('socket closed unexpectedly');
+  };
+</script>
+{% endblock %}
+
+
+{% block body %}
+<br><br>
+<h1 class="text-center header game_over"> &nbsp;&nbsp;GAME OVER !</h1>
+<h3 class="text-center game_over_message"><p id="name">{{score.player.user.username}}</p>you get score : &nbsp;<p id="score" style="display:inline-block">{{score.score}}</p></h3>
+<div class="text-center">
+<button id="broad">Broadcast my score to all players~ <i class="fa fa-bullhorn" aria-hidden="true"></i></button>
+</div>
+
+<br><br><div class="center">  
+    <div data-network="twitter" data-url="http://runningelephant.azurewebsites.net/hello/" data-description="I just reached {{score.score}}! Come and join me!" data-message="I just reached {{score.score}}! Come and join me! http://runningelephant.azurewebsites.net/hello/" class="st-custom-button"><i class="fa fa-twitter" aria-hidden="true"></i> &nbsp;&nbsp;Twitter</div>
+    <div data-network="facebook" data-url="http://runningelephant.azurewebsites.net/hello/" data-description="I just reached {{score.score}}! Come and join me!" class="st-custom-button"><i class="fa fa-facebook" aria-hidden="true"></i> &nbsp;&nbsp;  Facebook</div>
+    <div data-network="email" data-title='Join this game!' data-message="I just reached {{score.score}}! Come and join me! http://runningelephant.azurewebsites.net/hello/" class="st-custom-button"><i class="fa fa-envelope" aria-hidden="true"></i>  &nbsp;&nbsp; Email</div> 
+    <div data-network="weibo" data-url="http://runningelephant.azurewebsites.net/hello/" data-title="I just reached {{score.score}}! Come and join me!"  class="st-custom-button"><i class="fa fa-weibo" aria-hidden="true"></i> &nbsp;&nbsp;  Weibo</div> 
+    </div>
+<div class="center">    
+    <form class='form' action="{% url 'begin' %}" method='POST'>{% csrf_token %} 
+    <input class="selection1" type="submit" name='game' value="Play Again" style="font-size:20px;border-width: 2px;padding:15px;border-radius:75px;">
+    <br><br>
+    <input class="selection after_game_btn"  type="submit" name='score' value="Scoreboard" >
+    <input class="selection after_game_btn" type="submit" name='profile' value="Your Profile">
+    <input class="selection after_game_btn"  type="submit" name='logout' value="Log out" >
+</form></div><br>
+<br>
+{% endblock %}

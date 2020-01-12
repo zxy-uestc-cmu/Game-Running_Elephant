@@ -1,0 +1,16 @@
+{% extends "runningelephant/base.html" %}
+{% load static %}
+
+{% block body %}
+  <div class="center"> 
+    <form class='form' action="{% url 'thoughts_add' %}" method='POST'>{% csrf_token %} 
+      <h1 class="header">Share Your Thoughts</h1><br>
+      <textarea class="form-control is-invalid" id="validationTextarea" name="thoughts" style="background:#faf9f9af;border-color: #b4b3b300;" required></textarea>
+      <br><br><br>
+      <input class="selection" style="font-size:20px" type="submit" name='personal' value="Add">
+    </form>  
+    <br><br>
+    <a href="{% url 'profile' %}" class="go_back"><i class="fa fa-arrow-left" aria-hidden="true"></i> Go back</a>
+  </div>  
+
+{% endblock %}

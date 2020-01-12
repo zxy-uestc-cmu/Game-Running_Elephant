@@ -1,0 +1,39 @@
+{% extends "runningelephant/base.html" %}
+
+{% block body %}
+<!-- <div class="container-fluid" id="submitted_orders_table"> -->
+<div class="container justify-content-center" id="submitted_orders_table">
+    <h1 class='header'>Scoreboard - TOP 20</h1>
+        <div id="submitted_order_list" style="display: flex;justify-content: center;">
+                <table class='table table-striped mx-4 table-bordered' style="background:#f3d193ee;text-align: center;" id='score-table'>
+                    <thead>
+                        <tr>
+                            <th>Rank</th>
+                            <th>Player</th>
+                            <th>Score</th>
+                            <th>Time</th>
+                        </tr>                              
+                    </thead>
+                    <tbody>
+                        {%for record in records%}
+                        <tr>
+                            <td>{{record.rank}}
+                            <td>{{record.player}}</td>
+                            <td>{{record.score}}</td>
+                            <td>{{record.time}}</td>
+                        </tr>
+                        {%endfor%}
+                    </tbody>
+                </table>
+        </div>
+        </table>
+        </div>
+    
+</div><br><br><br>
+<div class="d-flex justify-content-center">
+    <a href="{% url 'profile' %}" class="go_back"><i class="fa fa-arrow-left" aria-hidden="true"></i> Go back</a>
+</div>
+<br><br><br>
+{% endblock %}
+
+

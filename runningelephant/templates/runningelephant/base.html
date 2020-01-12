@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+    {% load static %}
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="{% static 'runningelephant/cssfile.css' %}"/>
+        <link href="https://fonts.googleapis.com/css?family=Arvo&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Sigmar+One&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Press+Start+2P&display=swap" rel="stylesheet">
+        <link crossorigin="anonymous" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Josefin+Sans&display=swap" rel="stylesheet">
+        <link rel="shortcut icon" type="image/png" href="{% static 'favicon.ico' %}"/>
+        <script type="text/javascript" src="//platform-api.sharethis.com/js/sharethis.js#property=#{property?._id}&product=custom-share-buttons"></script>
+        <script crossorigin="anonymous" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" src="https://code.jquery.com/jquery-3.4.1.js"></script>
+        <script src="https://use.fontawesome.com/e0dd6bc8c0.js"></script>
+        <script crossorigin="anonymous" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>     
+        <title>
+            {% block title %}{% endblock %}
+        </title>
+    </head>
+    <body>
+        <img alt="backgroud-img" id="backgroud-img" src="../../static/runningelephant/images/background.png">
+        <div class="center"><img alt="title-img" id="title" src="../../static/runningelephant/images/title.png"></div>
+        <div id="tmp"></div></br>
+        {% block body %}{% endblock %}
+    </body>
+
+    {%block script%}
+    {%endblock%}
+    {%block js%}
+    <script>
+        var chatSocket = new WebSocket(
+            'ws://' + '127.0.0.1:8000'+ '/ws/profile/');
+        
+        chatSocket.onmessage = function(e) {
+            var data = JSON.parse(e.data);
+            var message = data['message'];
+            var broadcastdiv = '<div id="broadcast">' + message + '<br/></div>';
+            $("#tmp").empty();
+            $("#tmp").append(broadcastdiv);
+            $("#broadcast").css({
+                // "margin-left": $("#broadcast").width() / 2 * (-1) + 470 ,
+                // "margin-top": $("#broadcast").height() / 2 * (-1) - 140 ,
+                'position':'absolute', 
+                // 'display':'none', 
+                // 'overflow':'hidden', 
+                'padding':'30px 30px 30px',
+                // 'top': '50%',
+                'left': '450px', 
+                'text-align':'center', 
+                'font-family':"'Archivo Black', sans-serif",
+                'font-size': '20px',
+                'font-weight': 'bold',
+                'line-height':'30px',
+                'background-color':'#378530',
+                'border-radius': '10px',
+                'color': '#ffffff',
+                'border':'5px solid #000000ea',
+                'z-index':'9999'
+            });
+            $("#broadcast").show().delay(5000).fadeOut();
+            };
+            
+        chatSocket.onclose = function(e) {
+            console.error('Chat socket closed unexpectedly');
+        };
+        </script>
+    ®
+    <!-- <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"
+            integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script> -->
+
+</html>

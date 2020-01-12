@@ -1,0 +1,30 @@
+{% extends "runningelephant/base.html" %}
+{% load static %}
+
+{% block body %}
+  <div class="center"> 
+    <form class='form' action="{% url 'personal_edit' %}" method='POST' enctype="multipart/form-data">{% csrf_token %} 
+      <div class="center"><br>
+          {% if player.img %}
+          <img width="225px"  src="{{player.img.url}}" alt="">
+          {% else %}
+          <img width="135px" src="../../static/runningelephant/images/default.png" alt="">
+          {% endif %}
+      </div><br><br>
+      {% for field in form%}    
+      <div class="center">
+          {% if field.label_tag == img %}
+          <span class="field" id="image">{{ field.label_tag }} &nbsp; {{ field }}</span><span class="content">{{ field.errors }}</span>
+          {% else %}
+          <span class="field">{{ field.label_tag }} &nbsp; {{ field }}</span><span class="content">{{ field.errors }}</span>
+          {% endif %}
+      </div><br>
+      {% endfor %}
+      <br>
+      <input class="selection" style="font-size:20px" type="submit" name='comfirm' value="Confirm Edit and Upload">
+    </form>  
+    <a href="{% url 'profile' %}" class="go_back"><i class="fa fa-arrow-left" aria-hidden="true"></i> Go back</a>
+ </div>     
+
+</html> 
+{% endblock %}

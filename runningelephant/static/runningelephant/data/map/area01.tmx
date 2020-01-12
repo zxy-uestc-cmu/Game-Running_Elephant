@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.2" tiledversion="1.2.5" orientation="orthogonal" renderorder="right-down" width="40" height="15" tilewidth="32" tileheight="32" infinite="0" nextlayerid="12" nextobjectid="43">
+ <tileset firstgid="1" name="area01_level_tiles" tilewidth="32" tileheight="32" tilecount="140" columns="20">
+  <image source="../img/map/area01_level_tiles.png" width="640" height="241"/>
+ </tileset>
+ <tileset firstgid="141" name="tiles" tilewidth="32" tileheight="32" tilecount="156" columns="12">
+  <image source="../img/map/tiles.png" width="384" height="416"/>
+ </tileset>
+ <tileset firstgid="297" name="tiles_large" tilewidth="32" tileheight="32" tilecount="624" columns="24">
+  <image source="../img/map/tiles_large.png" width="768" height="832"/>
+ </tileset>
+ <imagelayer id="8" name="Background">
+  <image source="../img/area01_bkg.png" width="640" height="480"/>
+  <properties>
+   <property name="ratio" type="float" value="0.25"/>
+  </properties>
+ </imagelayer>
+ <layer id="3" name="background" width="40" height="15">
+  <data encoding="base64">
+   AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA4wEAAOQBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADWAAAA1gAAANYAAADWAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPsBAAD8AQAA1gAAANYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA7wAAAO8AAADvAAAA7wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATAgAAFAIAAO8AAADvAAAAAAAAAAAAAADWAAAA1gAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA1gAAANYAAADvAAAA7wAAAAAAAAAAAAAA7wAAAO8AAAAAAAAAAAAAANYAAADWAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANYAAADWAAAAAAAAAO8AAADvAAAA7wAAAO8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADvAAAA7wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANYAAADWAAAAAAAAAAAAAADvAAAA7wAAAAAAAADvAAAA7wAAAO8AAADvAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANYAAADWAAAA1gAAAAAAAAAAAAAAAAAAANYAAADWAAAAAAAAAAAAAAAAAAAAwQEAAMIBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADvAAAA7wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA7wAAAO8AAADvAAAA7wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADvAAAA7wAAAO8AAAAAAAAAAAAAAAAAAADvAAAA7wAAAAAAAAAAAAAAAAAAANkBAADaAQAAAAAAAAAAAAAAAAAAAAAAANYAAADWAAAA7wAAAO8AAADWAAAA1gAAAAAAAAAAAAAAAAAAAO8AAADvAAAA7wAAAO8AAADWAAAA1gAAANYAAADWAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANYAAADWAAAA1gAAANYAAADWAAAAAAAAAAAAAADvAAAA7wAAAO8AAADvAAAA7wAAAO8AAAAAAAAAAAAAAAAAAADvAAAA7wAAAO8AAADvAAAA7wAAAO8AAADvAAAA7wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADvAAAA7wAAAO8AAADvAAAA7wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA7wAAAO8AAADvAAAA7wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAO8AAADvAAAA7wAAAO8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA1gAAANYAAADWAAAA1gAAANYAAADWAAAA1gAAANYAAADWAAAA1gAAANYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADvAAAA7wAAAO8AAADvAAAA1gAAANYAAADWAAAA1gAAANYAAADWAAAA1gAAAO8AAADvAAAA7wAAAO8AAADvAAAA7wAAAO8AAADvAAAA7wAAAO8AAADvAAAA1gAAANYAAADWAAAA1gAAANYAAADWAAAA1gAAANYAAADWAAAA1gAAANYAAADWAAAA1gAAANYAAADWAAAA1gAAANYAAADWAAAA7wAAAO8AAADvAAAA7wAAAO8AAADvAAAA7wAAAO8AAADvAAAA7wAAAO8AAADvAAAA7wAAAO8AAADvAAAA7wAAAO8AAADvAAAA7wAAAO8AAADvAAAA7wAAAO8AAADvAAAA7wAAAO8AAADvAAAA7wAAAO8AAADvAAAA7wAAAO8AAADvAAAA7wAAAO8AAADvAAAA7wAAAO8AAADvAAAA7wAAAO8AAADvAAAA
+  </data>
+ </layer>
+ <objectgroup color="#00ff00" id="4" name="Entities">
+  <object id="1" name="mainPlayer" x="7.77143" y="51" width="55" height="43">
+   <properties>
+    <property name="framewidth" value="55"/>
+    <property name="image" value="gripe_run_right"/>
+   </properties>
+  </object>
+  <object id="2" name="CoinEntity" x="416" y="192" width="32" height="32">
+   <properties>
+    <property name="framewidth" value="32"/>
+    <property name="image" value="spinning_coin_gold"/>
+   </properties>
+  </object>
+  <object id="3" name="CoinEntity" x="97" y="255" width="32" height="32">
+   <properties>
+    <property name="framewidth" value="32"/>
+    <property name="image" value="spinning_coin_gold"/>
+   </properties>
+  </object>
+  <object id="4" name="CoinEntity" x="288" y="128" width="32" height="32">
+   <properties>
+    <property name="framewidth" value="32"/>
+    <property name="image" value="spinning_coin_gold"/>
+   </properties>
+  </object>
+  <object id="5" name="CoinEntity" x="128" y="96" width="32" height="32">
+   <properties>
+    <property name="framewidth" value="32"/>
+    <property name="image" value="spinning_coin_gold"/>
+   </properties>
+  </object>
+  <object id="6" name="CoinEntity" x="992" y="160" width="32" height="32">
+   <properties>
+    <property name="framewidth" value="32"/>
+    <property name="image" value="spinning_coin_gold"/>
+   </properties>
+  </object>
+  <object id="7" name="CoinEntity" x="1024" y="160" width="32" height="32">
+   <properties>
+    <property name="framewidth" value="32"/>
+    <property name="image" value="spinning_coin_gold"/>
+   </properties>
+  </object>
+  <object id="8" name="CoinEntity" x="1088" y="384" width="32" height="32">
+   <properties>
+    <property name="framewidth" value="32"/>
+    <property name="image" value="spinning_coin_gold"/>
+   </properties>
+  </object>
+  <object id="9" name="CoinEntity" x="801" y="255" width="32" height="32">
+   <properties>
+    <property name="framewidth" value="32"/>
+    <property name="image" value="spinning_coin_gold"/>
+   </properties>
+  </object>
+  <object id="10" name="CoinEntity" x="709.003" y="254.727" width="32" height="32">
+   <properties>
+    <property name="framewidth" value="32"/>
+    <property name="image" value="spinning_coin_gold"/>
+   </properties>
+  </object>
+  <object id="29" name="me.LevelEntity" x="1248" y="0" width="32" height="128">
+   <properties>
+    <property name="to" value="area02"/>
+   </properties>
+  </object>
+  <object id="33" name="CoinEntity" x="623" y="223" width="32" height="32" rotation="-180">
+   <properties>
+    <property name="framewidth" value="32"/>
+    <property name="image" value="spinning_coin_gold"/>
+   </properties>
+  </object>
+  <object id="34" name="CoinEntity" x="140.632" y="383.909" width="32" height="32">
+   <properties>
+    <property name="framewidth" value="32"/>
+    <property name="image" value="spinning_coin_gold"/>
+   </properties>
+  </object>
+  <object id="36" name="CandyEntity" x="1131" y="123" width="42" height="35">
+   <properties>
+    <property name="framewidth" value="42"/>
+    <property name="image" value="eyecandy_1"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup color="#ff0000" id="5" name="EnemyEntities">
+  <object id="11" name="EnemyEntity" x="288" y="320" width="352" height="64">
+   <properties>
+    <property name="framewidth" value="32"/>
+    <property name="image" value="spinning_coin_gold"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup id="11" name="MouseEntities">
+  <object id="37" name="MouseEntity" x="642" y="359" width="285" height="56"/>
+ </objectgroup>
+ <objectgroup color="#ff0000" id="7" name="collision">
+  <object id="12" x="0" y="96" width="64" height="256"/>
+  <object id="13" x="64" y="288" width="128" height="64"/>
+  <object id="14" x="0" y="352" width="62.9063" height="128"/>
+  <object id="15" x="32" y="416" width="256" height="64"/>
+  <object id="16" x="288" y="384" width="352" height="96"/>
+  <object id="17" x="640" y="416" width="608" height="64"/>
+  <object id="18" x="1216.18" y="128" width="63.8153" height="352"/>
+  <object id="19" type="platform" x="1120" y="160">
+   <polyline points="0,0 64,0"/>
+  </object>
+  <object id="20" type="platform" x="1056" y="256">
+   <polyline points="0,0 64,0"/>
+  </object>
+  <object id="21" type="platform" x="992" y="192">
+   <polyline points="0,0 64,0"/>
+  </object>
+  <object id="22" type="platform" x="928" y="256">
+   <polyline points="0,0 64,0"/>
+  </object>
+  <object id="23" type="platform" x="704" y="288">
+   <polyline points="0,0 160,0"/>
+  </object>
+  <object id="24" type="platform" x="576" y="224">
+   <polyline points="0,0 64,0"/>
+  </object>
+  <object id="25" type="platform" x="384" y="224">
+   <polyline points="0,0 96,0"/>
+  </object>
+  <object id="26" type="platform" x="256" y="160">
+   <polyline points="0,0 64,0"/>
+  </object>
+  <object id="27" type="platform" x="128" y="128">
+   <polyline points="0,0 64,0"/>
+  </object>
+  <object id="35" type="platform" x="673.575" y="65.4486">
+   <polyline points="0,0 125.458,0"/>
+  </object>
+  <object id="40" x="991" y="193" width="66" height="64"/>
+  <object id="42" x="-0.128594" y="19.5785" width="4.41433" height="75.1644"/>
+ </objectgroup>
+</map>

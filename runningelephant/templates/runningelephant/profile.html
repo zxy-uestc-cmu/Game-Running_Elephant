@@ -1,0 +1,189 @@
+{% extends "runningelephant/base.html" %}
+{% load static %}
+{% load friendshiptags %}
+
+{% block body %}
+  <!-- bootstrap alert delete friend -->
+  <div class="container" style="display: none" id="message">
+    <div class="alert alert-info alert-dismissible fade show" role="alert">
+        Friend deleted successfully!
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+  </div>
+
+  <!-- bootstrap alert delete thought -->
+  <div class="container" style="display: none" id="message2">
+    <div class="alert alert-info alert-dismissible fade show" role="alert">
+        Thought deleted successfully!
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+  </div>
+
+  <div class="center">  
+      <div class="row">
+        <div class="col">
+            <h3 class="header">Profile </h3>
+          {% if player.img %}
+          <img width="200px" src="{{ player.img.url }}" alt="">
+        {% else %}
+          <img width="135px" src="../../static/runningelephant/images/default.png" alt=""> 
+        {% endif %}<br><br>
+        <span class='field'>Username:</span> <span class="content">{{ player.user.username }}</span><br><br>
+        <span class='field'>Age:</span><span class="content">{{ player.age }}</span><br><br>
+        <span class='field'>Star Sign:</span><span class="content">{{ player.starsign }}</span><br>
+        <form class='form' action="{% url 'personal_edit' %}" method='POST'>{% csrf_token %} 
+          <input class="selection" style="font-size:18px" type="submit" name='personal' value="Edit">
+        </form><br>
+        <a href="{% url 'begin' %}" class="go_back"><i class="fa fa-arrow-left" aria-hidden="true"></i> Go back</a>
+        </div>
+        
+        <!-- Display thoughts -->
+        <div class="col">
+          <h3 class="header">Thoughts</h3>
+          {% for t in thoughts %}
+          <div id="thought-{{t.id}}">
+            <span class='field' >{{ t.thoughts }} </span>
+            <a data-url="{% url 'thoughts_delete' t.id %}" data-id="{{ t.id }}" class="js-delete-thought"><i class="fa fa-trash fa-lg trashcan" aria-hidden="true"></i></a><br><br>
+          </div>
+          {% endfor %}
+          <br>
+          <a href="{% url 'thoughts_add' %}"><button class="selection" style="font-size:16px">Add New Thoughts</button></a>
+        </div>
+
+        <div class="col">
+          <h3 class="header">History Score <br> Top 5</h3>
+      {% for s in score %}
+      <span class='field'>{{ s.score }} </span><br> <span class='content' style='font-size:16px'> {{ s.time }}</span><br><br>
+      {% endfor %} 
+        </div>
+
+        <!-- Show player's friends -->
+        <div class="col" id="reload">
+          <h3 class="header">Friends</h3>
+          {% for friend in friends %}
+            <div id="friend-{{ friend.id }}">
+              <a href="{% url 'friend_profile' friend.id %}"><span class='field' id="friend-name">{{ friend.username }} </span></a>
+              <a data-id="{{ friend.id }}" class="js-delete-friend" data-url="{% url 'friend_delete' friend.id %}"><i class="fa fa-times fa-lg trashcan"></i></a><br>
+            </div>
+          {% endfor %}
+          <br>
+          <a href="{% url 'addfriends' %}"><button class="selection" style="font-size:18px">Search</button></a> 
+          <br>
+          {% if friend_requests %}
+            <button onClick="window.location.reload();" class="selection" style="font-size:18px">You have {{ friend_requests|length }} new friend requests</button> 
+          {% endif %}
+        </div>
+      </div>
+
+      <br>
+      <!-- Display add friends requests -->
+      {% if friend_requests %}
+      <div class="container">
+      <div class="row" id="reload2">
+          <div class="col-6">
+            <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                <a class="nav-link active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true"><h5>Friend Requests</h5></a>
+              {% for friend_request in friend_requests %}
+              {% if not friend_request.rejected %}
+              <a class="nav-link" id="{{ friend_request.from_user }}-message-tab" data-toggle="pill" href="#{{ friend_request.from_user }}-message" role="tab" aria-controls="v-pills-home" aria-selected="true">{{ friend_request.from_user }}</a>
+              {% endif %}
+              {% endfor %}
+            </div>
+          </div>
+          <div class="col-6" style="background-color: rgba(248, 156, 37, 0.2);">
+            <div class="tab-content" id="v-pills-tabContent">
+                <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
+                    <h4>Click names to view messages</h4>
+                </div>
+              {% for friend_request in friend_requests %}
+              {% if not friend_request.rejected %}
+              <div class="tab-pane fade" id="{{ friend_request.from_user }}-message" role="tabpanel" aria-labelledby="{{ friend_request.from_user }}-message-tab">
+                <h4>{{ friend_request.message }}</h4>
+                <br>
+                <a href="{% url 'friend_accept' friend_request.id %}" class="btn btn-info btn-sm">Accept</a> 
+                <a href="{% url 'friend_reject' friend_request.id %}" class="btn btn-danger btn-sm">Reject</a>
+              </div>
+              {% endif %}
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endif %}
+      <br>
+      <br>
+  {% endblock %}
+
+{% block js %}
+  {{block.super}}
+  <script>
+    // delete friend message
+    $(document).ready(function() {
+      $("#message").hide();
+      $(".fa-times").click(function showAlert() {
+        $("#message").fadeTo(2000, 500).slideUp(500, function() {
+          $("#message").slideUp(500);
+        });
+      });
+    });
+
+    // delete thought message
+    $(document).ready(function() {
+      $("#message2").hide();
+      $(".fa-trash").click(function showAlert() {
+        $("#message2").fadeTo(2000, 500).slideUp(500, function() {
+          $("#message2").slideUp(500);
+        });
+      });
+
+      $('body').on('click','.js-delete-friend',function(){
+        
+      });
+    });
+
+    // Reload submitted page every 5 seconds (with out refreshing)
+    $(document).ready(function () {
+      setInterval(function() {
+        $("#reload").load(location.href + " #reload");
+      }, 5000);
+    });
+
+    // Ajax Delete Friend
+    $(".js-delete-friend").on("click", function(){
+      var dataUrl = $(this).attr("data-url");
+      var id = $(this).attr("data-id");
+      $.ajax({
+        type: "GET",
+        url: dataUrl,
+        dataType: 'json',
+        success: function (data) {
+          if (data.deleted) {
+            console.log("Friend Deleted!");
+            $("#friend-" + id).remove();
+          }
+        }
+      });
+    });
+
+    // Ajax Delete Thought
+    $('.js-delete-thought').click(function(){
+      var dataUrl = $(this).attr('data-url');
+      var id = $(this).attr('data-id');
+      $.ajax({
+        type:'GET',
+        url: dataUrl,
+        dataType:'json',
+        success: function(data) {
+          if (data.isDelete) {
+            console.log('Thoughts Deleted!');
+            $('#thought-' + id).remove();
+          }
+        }
+      });
+    });
+    </script>
+{% endblock %}

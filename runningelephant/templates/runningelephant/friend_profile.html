@@ -1,0 +1,47 @@
+{% extends "runningelephant/base.html" %}
+{% load static %}
+{% load friendshiptags %}
+{% block body %}
+  <div class="center">  
+      <div class="row">
+        <div class="col">
+            <h3 class="header">Profile </h3>
+          {% if player.img %}
+          <img width="200px" src="{{ player.img.url }}" alt="">
+        {% else %}
+          <img width="135px" src="../../static/runningelephant/images/default.png" alt=""> 
+        {% endif %}<br><br>
+        <span class='field'>Username:</span> <span class="content">{{ player.user.username }}</span><br><br>
+        <span class='field'>Age:</span><span class="content">{{ player.age }}</span><br><br>
+        <span class='field'>Star Sign:</span><span class="content">{{ player.starsign }}</span><br>
+        <br>
+        <a href="{% url 'profile' %}" class="go_back"><i class="fa fa-arrow-left" aria-hidden="true"></i> Go back</a>
+        </div>
+
+        <div class="col">
+          <h3 class="header">Thoughts</h3>
+          {% for t in thoughts %}
+          <span class='field'>{{ t.thoughts }} </span>
+          <br><br>
+          {% endfor %}
+          <br>
+        </div>
+
+        <div class="col">
+          <h3 class="header">History Score <br> Top 5</h3>
+      {% for s in score %}
+      <span class='field'>{{ s.score }} </span><br> <span class='content' style='font-size:16px'> {{ s.time }}</span><br><br>
+      {% endfor %} 
+        </div>
+
+        <div class="col">
+          <h3 class="header">Friends</h3>
+          {% for friend in friends %}
+            <span class='field'>{{ friend.username }} </span><br>
+          {% endfor %} 
+        </div>
+
+      </div>
+            
+  {% endblock %}
+

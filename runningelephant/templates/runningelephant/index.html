@@ -1,0 +1,49 @@
+{% load static %}
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Running Elephant</title>
+		<link rel="stylesheet" type="text/css" href="{% static 'runningelephant/style.css' %}">
+		<meta id="viewport" name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <link rel="apple-touch-icon" href="icons/touch-icon-iphone-60x60.png">
+		<link rel="apple-touch-icon" sizes="76x76" href="icons/touch-icon-ipad-76x76.png">
+		<link href="https://fonts.googleapis.com/css?family=Archivo+Black&display=swap" rel="stylesheet">
+		<link rel="shortcut icon" type="image/png" href="{% static 'favicon.ico' %}"/>
+        <link rel="apple-touch-icon" sizes="120x120" href="icons/touch-icon-iphone-retina-120x120.png">
+		<link rel="apple-touch-icon" sizes="152x152" href="icons/touch-icon-ipad-retina-152x152.png">
+		<script crossorigin="anonymous" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" src="https://code.jquery.com/jquery-3.4.1.js"></script>
+	</head>
+	<body>
+		<!-- Canvas placeholder -->
+		<div id="screen"></div>
+
+		<!-- melonJS Library -->
+		<!-- build:js js/app.min.js -->
+		<script type="text/javascript" src="{% static 'runningelephant/js/melonJS.js' %}"></script>
+
+		<!-- Plugin(s) -->
+		<script type="text/javascript" src="{% static 'runningelephant/js/debugPanel.js' %}"></script>
+
+		<!-- Game Scripts -->
+		<script type="text/javascript" src="{% static 'runningelephant/js/game.js' %}"></script>
+		<script type="text/javascript" src="{% static 'runningelephant/js/resources.js' %}"></script>
+
+		<script type="text/javascript" src="{% static 'runningelephant/js/entities.js' %}"></script>
+		<script type="text/javascript" src="{% static 'runningelephant/js/HUD.js' %}"></script>
+
+		<script type="text/javascript" src="{% static 'runningelephant/js/title.js' %}"></script>
+		<script type="text/javascript" src="{% static 'runningelephant/js/play.js' %}"></script>
+	
+		<!-- /build -->
+		<!-- Bootstrap & Mobile optimization tricks -->
+		<script type="text/javascript">
+			me.device.onReady(function onReady() {
+				game.onload();
+			});
+		</script>
+
+	</body>
+</html>
